@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show hidden JS</title>
+</head>
+
+<style>
+  p {
+    margin: 0;
+  }
+
+  .block {
+    display: none;
+  }
+
+  .b-show {
+    display: block;
+    animation: showBlock .5s linear forwards;
+  }
+
+  @keyframes showBlock {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .block2 {
+    opacity: 0;
+    max-height: 0;
+    transition: all .3s 0s;
+  }
+
+  .block2.visible {
+    opacity: 1;
+    max-height: 50px;
+    transition: all .5s 0s;
+  }
+</style>
+
+<body>
+  <button class="btn">Button</button>
+  <div class="block">Hidden block</div>
+  <div>
+    <p>some info<br /><br /></p>
+
+  </div>
+
+  <button class="btn2">Button2</button>
+  <div class="block2">Hidden block2</div>
+  <div>
+    <p>some info</p>
+  </div>
+</body>
+
+<script>
+  // Способ 1: css @keyframes
+  var btn = document.querySelector('.btn');
+  var blockHidden = document.querySelector('.block');
+
+  function showBlock() {
+    if (blockHidden.classList.contains('b-show'))
+      blockHidden.classList.remove('b-show');
+    else
+      blockHidden.classList.add('b-show');
+  }
+  btn.addEventListener('click', showBlock);
+
+  // Способ 2: max-height + transition
+  var btn2 = document.querySelector('.btn2');
+  var block2 = document.querySelector('.block2');
+  function showBlock2() {
+    block2.classList.toggle('visible');
+  }
+  btn2.addEventListener('click', showBlock2);
+</script>
+
+</html>
